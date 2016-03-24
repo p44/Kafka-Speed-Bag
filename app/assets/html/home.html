@@ -1,0 +1,39 @@
+
+<div class="masthead clearfix">
+  <div class="inner">
+    <h3 class="masthead-brand">Play * Kafka * Spark</h3>
+    <nav>
+      <ul class="nav masthead-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="/results">Results</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<div class="inner cover">
+  <h1 class="cover-heading">Kafka Speed Bag</h1>
+  <p class="lead">Produce JSON with randomized values to Kafka.<br/>
+    Consume JSON with Spark. Stream Results</p>
+  <p class="lead">
+    <span ng-show="appNotStarted()">
+      <a data-ng-click="startSimulation()" class="btn btn-lg btn-default">Start</a>
+    </span>
+    <span ng-hide="appNotStarted()">
+      <a class="btn btn-lg btn-default" href="/results">Results</a>
+    </span>
+  </p>
+</div>
+
+<div class="mastfoot">
+  <div class="inner">
+    <p>This app is on <a href="https://github.com/p44/Kafka-Speed-Bag">github</a>, by <a href="https://twitter.com/markcwilson">markcwilson</a>. Apache 2.0 License</p>
+  </div>
+</div>
+
+
+<!-- div class="row top-buffer-lrg">
+  <div class="col-md-6 col-md-offset-3">
+
+  </div>
+</div -->

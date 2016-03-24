@@ -1,0 +1,40 @@
+@()<!DOCTYPE html>
+<html ng-app="kspeedbag">
+    <head>
+        <base href="/">
+        <title>Kafka Speed Bag</title>
+        <link rel="shortcut icon" type="image/png" href='@routes.Assets.versioned("images/favicon.ico")'>
+        <link rel="stylesheet" media="screen" href='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.css"))'>
+        <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/cover.css")'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <!-- Layout based on Cover template for Bootstrap, by "https://twitter.com/mdo" mdo -->
+    <body>
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                <div class="cover-container">
+
+        @* -- Main Content -- *@
+        <div data-ng-view></div>
+
+                </div>
+            </div>
+        </div>
+
+        <script src='@routes.Assets.versioned("javascripts/jquery-1.11.3.min.js")'></script>
+        <script src='@routes.Assets.versioned("javascripts/angular1-4-3.min.js")'></script>
+        <script src='@routes.Assets.versioned("javascripts/angular-route1-4-3.min.js")'></script>
+        <script src='@routes.Assets.versioned("javascripts/angular-cookies1-4-3.min.js")'></script>
+        <script src='@routes.Assets.versioned("javascripts/angular-sanitize1-4-3.min.js")'></script>
+        <script src='@routes.Assets.versioned("javascripts/app.js")'></script>
+        <script src='@routes.Assets.versioned("javascripts/services.js")'></script>
+        <script src='@routes.Assets.versioned("javascripts/flash.service.js")'></script>
+        <script src='@routes.Assets.versioned("javascripts/controllers.js")'></script>
+        <script src='@routes.Assets.versioned("javascripts/lodash.min.js")'></script>
+        <script src='@routes.Assets.versioned("javascripts/angular-csv.min.js")'></script>
+
+    </body>
+</html>
+
+

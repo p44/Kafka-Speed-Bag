@@ -20,18 +20,18 @@ package com.mcw
 import models.{NameCalculation, GeneratedMessage, KSpeedBagModels}
 import org.apache.spark.streaming.dstream.ReceiverInputDStream
 import org.apache.spark.streaming.{Seconds, StreamingContext}
-import kafka.serializer.StringDecoder
+//import kafka.serializer.StringDecoder
 import org.apache.spark.streaming.kafka.KafkaUtils
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.sql.{Dataset, SQLContext}
-import org.apache.spark.sql.functions._
+//import org.apache.spark.sql.functions._
 import play.api.libs.json.{JsArray, Json}
-import org.apache.spark.sql.functions._
-import org.apache.spark.sql.Encoder
-import org.apache.spark.sql.expressions.Aggregator
-import org.apache.spark.sql.TypedColumn
+//import org.apache.spark.sql.functions._
+//import org.apache.spark.sql.Encoder
+//import org.apache.spark.sql.expressions.Aggregator
+//import org.apache.spark.sql.TypedColumn
 
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -80,6 +80,7 @@ object KafkaStreamConsumer {
    * @param rdd
    */
   def processWithDataSets(rdd: RDD[(String, String)]): Unit = {
+    val now = System.currentTimeMillis
     println("************ START *************")
     if (rdd.toLocalIterator.nonEmpty) {
       val sqlContext = SQLContext.getOrCreate(rdd.sparkContext)
@@ -89,22 +90,25 @@ object KafkaStreamConsumer {
       val ds = df.as[GeneratedMessage]
       ds.cache()
 
+      val cnt = ds.count()
       val colorCountList = ds.groupBy(_.color).count().map { cc =>
-        // on worker nodes
-        NameCalculation(cc._1, cc._2)
+        val raw = cc._2.toDouble / cnt.toDouble
+        val percentColor = BigDecimal(raw).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
+        //println(s"percentColor for ${cc._1} rounded $percentColor")
+        NameCalculation(cc._1, percentColor, now)
       }.collect().toList
       //val colorCountsList = dsColorCount.collect.toList.map(cc => NameCalculation(cc._1, cc._2))
 
       val highScorer = ds.reduce((a, b) => GeneratedMessage.maxScore(a, b))
       println("highScorer " + highScorer)
-      val leader = NameCalculation(highScorer.name, highScorer.score)
+      val leader = NameCalculation(highScorer.name, highScorer.score, now)
 
       ds.unpersist()
 
       publishTheResults(colorCountList, leader)
     }
 
-    println(System.currentTimeMillis)
+    println(now)
     println("************ END *************")
   }
 
@@ -116,14 +120,6 @@ object KafkaStreamConsumer {
    */
   def publishTheResults(colorCountList: List[NameCalculation], leader: NameCalculation): Unit = {
     ResultsBroadcast.pushToResultsChannel(models.Results(leader, colorCountList))
-  }
-
-  def stringToLong(s: String): Long = {
-    try {
-      s.toLong
-    } catch {
-      case e: Exception => 0
-    }
   }
 
 }

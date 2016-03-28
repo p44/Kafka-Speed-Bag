@@ -3,9 +3,10 @@
     <head>
         <base href="/">
         <title>Kafka Speed Bag</title>
-        <link rel="shortcut icon" type="image/png" href='@routes.Assets.versioned("images/favicon.ico")'>
-        <link rel="stylesheet" media="screen" href='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.css"))'>
-        <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/cover.css")'>
+        <link rel="shortcut icon" type="image/png" href='/public/images/favicon.ico'>
+        <link rel="stylesheet" media="screen" href='/webjars/bootstrap/3.3.6/css/bootstrap.min.css'>
+        <link rel="stylesheet" media="screen" href='/assets/stylesheets/cover.css'>
+        <link rel="stylesheet" media="screen" href='/assets/stylesheets/epoch.min.css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 
@@ -15,24 +16,25 @@
             <div class="site-wrapper-inner">
                 <div class="cover-container">
 
-        @* -- Main Content -- *@
         <div data-ng-view></div>
 
                 </div>
             </div>
         </div>
 
-        <script src='@routes.Assets.versioned("javascripts/jquery-1.11.3.min.js")'></script>
-        <script src='@routes.Assets.versioned("javascripts/angular1-4-3.min.js")'></script>
-        <script src='@routes.Assets.versioned("javascripts/angular-route1-4-3.min.js")'></script>
-        <script src='@routes.Assets.versioned("javascripts/angular-cookies1-4-3.min.js")'></script>
-        <script src='@routes.Assets.versioned("javascripts/angular-sanitize1-4-3.min.js")'></script>
-        <script src='@routes.Assets.versioned("javascripts/app.js")'></script>
-        <script src='@routes.Assets.versioned("javascripts/services.js")'></script>
-        <script src='@routes.Assets.versioned("javascripts/flash.service.js")'></script>
-        <script src='@routes.Assets.versioned("javascripts/controllers.js")'></script>
-        <script src='@routes.Assets.versioned("javascripts/lodash.min.js")'></script>
-        <script src='@routes.Assets.versioned("javascripts/angular-csv.min.js")'></script>
+        <script src='/assets/javascripts/jquery-1.12.2.min.js'></script>
+        <script src='/assets/javascripts/angular-1-5-3/angular.min.js'></script>
+        <script src='/assets/javascripts/angular-1-5-3/angular-route.min.js'></script>
+        <script src='/assets/javascripts/angular-1-5-3/angular-cookies.min.js'></script>
+        <script src='/assets/javascripts/angular-1-5-3/angular-sanitize.min.js'></script>
+        <script src='/assets/javascripts/lodash.min.js'></script>
+        <script src='/assets/javascripts/d3.min.js'></script>
+        <script src='/assets/javascripts/epoch.min.js'></script>
+        <script src='/assets/javascripts/ng-epoch.js'></script>
+        <script src='/assets/javascripts/app.js'></script>
+        <script src='/assets/javascripts/services.js'></script>
+        <script src='/assets/javascripts/flash.service.js'></script>
+        <script src='/assets/javascripts/controllers.js'></script>
 
     </body>
 </html>

@@ -36,7 +36,30 @@
                 $scope.leader = { name: '', score: 0 };
                 $scope.colors_counts = [];
 
+                // http://epochjs.github.io/epoch/real-time/#gauge
+                // http://dainbrump.github.io/ng-epoch/
+                $scope.gauge_red_value=0.0;
+                $scope.gauge_orange_value=0.0;
+                $scope.gauge_yellow_value=0.0;
+                $scope.gauge_green_value=0.0;
+                $scope.gauge_blue_value=0.0;
+                $scope.gauge_indigo_value=0.0;
+
                 $scope.appStarted = function () { return $rootScope.started; };
+
+                $scope.setColorGuages = function () {
+                    var len = $scope.colors_counts.length;
+                    for (var i = 0; i < len; i++) {
+                        var x = $scope.colors_counts[i];
+                        console.log(x.name + '  ' + x.value);
+                        if ('red' === x.name) $scope.gauge_red_value = x.value;
+                        else if ('orange' === x.name) $scope.gauge_orange_value = x.value;
+                        else if ('yellow' === x.name) $scope.gauge_yellow_value = x.value;
+                        else if ('green' === x.name) $scope.gauge_green_value = x.value;
+                        else if ('blue' === x.name) $scope.gauge_blue_value = x.value;
+                        else if ('indigo' === x.name) $scope.gauge_indigo_value = x.value;
+                    }
+                };
 
                 /** handle incoming delivery feed messages: add to messages array */
                 $scope.addResultFeedMsg = function (msg) {
@@ -44,14 +67,12 @@
                     console.log('Received Result msgObj' + msgObj);
                     $scope.$apply(function () {
                         $scope.result_json = msg.data;
+                        console.log('Received Result  msg.data ' + msg.data);
                         $scope.leader = msgObj.leader;
-                        console.log('Received Result $scope.leader ' + $scope.leader);
+                        $scope.colors_counts = msgObj.colorCountList;
+                        $scope.setColorGuages();
                     });
                 };
-
-                /*
-                 data: {"leader":{"name":"Amit","value":98},"colorCountList":[{"name":"yellow","value":8},{"name":"orange","value":3},{"name":"green","value":3},{"name":"violet","value":3},{"name":"blue","value":1},{"name":"red","value":2}]}
-                 */
 
                 /** start listening to the deliery feed for the fish store */
                 $scope.listen = function () {

@@ -2,7 +2,7 @@
     'use strict';
 
 
-    angular.module('kspeedbag', ['kspeedbag.controllers', 'ngRoute', 'ngCookies', 'ngSanitize', 'ngCsv'])
+    angular.module('kspeedbag', ['kspeedbag.controllers', 'ngRoute', 'ngCookies', 'ngSanitize', 'ng.epoch'])
         .config(config)
         .run(run);
 

@@ -41,7 +41,7 @@ object NameValue {
 }
 
 /** used to diplay simple results - rounded */
-case class NameCalculation(name: String, value: Long)
+case class NameCalculation(name: String, value: Double, ts: Long)
 object NameCalculation {
   implicit val jsonWriter = Json.writes[NameCalculation]
   implicit val jsonReader = Json.reads[NameCalculation]
@@ -99,6 +99,7 @@ object KSpeedBagModels {
 
   val COLORS: Seq[String] = Seq(
     "red",
+    "red",
     "orange",
     "yellow",
     "yellow",
@@ -106,8 +107,7 @@ object KSpeedBagModels {
     "green",
     "blue",
     "indigo",
-    "violet",
-    "violet")
+    "indigo")
 
 
 }

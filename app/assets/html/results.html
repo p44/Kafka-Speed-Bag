@@ -2,7 +2,7 @@
 
 <div class="masthead clearfix">
     <div class="inner">
-        <h3 class="masthead-brand">Play * Kafka * Spark</h3>
+        <h3 class="masthead-brand">Leader: {{leader.name}} {{leader.value}}</h3>
         <nav>
             <ul class="nav masthead-nav">
                 <li><a href="/">Home</a></li>
@@ -13,18 +13,33 @@
 </div>
 
 <div class="inner cover">
-    <h1 class="cover-heading">Results Here</h1>
-
+    <!-- h1 class="cover-heading">Results</h1>
+    <p class="lead"><pre>{{result_json}}</pre></p -->
     <div>
-        <p>Leader: {{leader.name}} {{leader.value}}</p>
+        <div class="row">
+            <div class="col-md-12">
 
-        <p><pre>{{result_json}}</pre></p>
+            </div>
+        </div>
+
+        <p>
+        <div class="row">
+            <div class="col-md-4"><h3>Red</h3><epoch-gauge gauge-value="0.0" gauge-stream="gauge_red_value"></epoch-gauge></div>
+            <div class="col-md-4"><h3>Orange</h3><epoch-gauge gauge-value="0.0" gauge-stream="gauge_orange_value"></epoch-gauge></div>
+            <div class="col-md-4"><h3>Yellow</h3><epoch-gauge gauge-value="0.0" gauge-stream="gauge_yellow_value"></epoch-gauge></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"><h3>Green</h3><epoch-gauge gauge-value="0.0" gauge-stream="gauge_green_value"></epoch-gauge></div>
+            <div class="col-md-4"><h3>Blue</h3><epoch-gauge gauge-value="0.0" gauge-stream="gauge_blue_value"></epoch-gauge></div>
+            <div class="col-md-4"><h3>Indigo</h3><epoch-gauge gauge-value="0.0" gauge-stream="gauge_indigo_value"></epoch-gauge></div>
+        </div>
+        </p>
     </div>
  </div>
 
 <div class="mastfoot">
     <div class="inner">
-        <p>This app is on <a href="https://github.com/p44/Kafka-Speed-Bag">github</a>, by <a href="https://twitter.com/markcwilson">markcwilson</a>. Apache 2.0 License</p>
-     </div>
+    </div>
 </div>
+
 
